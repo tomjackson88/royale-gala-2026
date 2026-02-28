@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Royale Gala 2026 – The Wickers Charity</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    @font-face {
+      font-family: 'Gatsby Gilmour';
+      src: url('Gatsby_Gilmour.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+      background: #0a0a0a;
+      color: #f0ece4;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    ul { list-style: none; }
+
+    :root {
+      --gold: #c9a84c;
+      --gold-light: #e2c97e;
+      --gold-dark: #a07e2e;
+      --dark-bg: #0a0a0a;
+      --dark-card: #141414;
+      --dark-card-alt: #1a1610;
+      --cream: #f0ece4;
+      --red-accent: #c0392b;
+      --white: #ffffff;
+      --text-muted: #b5b0a6;
+      --section-dark: #0e0e0e;
+      --max-width: 1200px;
+    }
+
+    /* ============ HEADER ============ */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      height: 80px;
+      display: flex;
+      align-items: center;
+      transition: background 0.3s;
+    }
+    .site-header.scrolled {
+      background: rgba(0,0,0,0.97);
+      box-shadow: 0 2px 40px rgba(0,0,0,0.6);
+    }
+    .header-inner {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header-logo img { height: 50px; width: auto; }
+    .desktop-nav { display: flex; align-items: center; gap: 0; }
+    .desktop-nav > li { position: relative; }
+    .desktop-nav > li > a {
+      display: block;
+      padding: 28px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      color: #fff;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+    .desktop-nav > li > a:hover { color: var(--gold); }
+    .desktop-nav > li.nav-cta > a { color: var(--gold); font-weight: 600; }
+    .desktop-nav > li.nav-donate > a {
+      background: var(--gold);
+      color: #000;
+      font-weight: 700;
+      padding: 10px 22px;
+      border-radius: 4px;
+      margin-left: 6px;
+      transition: background 0.2s;
+    }
+    .desktop-nav > li.nav-donate > a:hover { background: var(--gold-light); }
+    .desktop-nav > li > .sub-menu {
+      position: absolute;
+      top: 100%; left: 0;
+      min-width: 220px;
+      background: #111;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-top: 2px solid var(--gold);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(8px);
+      transition: all 0.25s ease;
+      z-index: 100;
+    }
+    .desktop-nav > li:hover > .sub-menu {
+      opacity: 1; visibility: visible; transform: translateY(0);
+    }
+    .sub-menu li a {
+      display: block;
+      padding: 12px 20px;
+      font-size: 13px;
+      color: #ccc;
+      transition: background 0.15s, color 0.15s;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .sub-menu li:last-child a { border-bottom: none; }
+    .sub-menu li a:hover { background: rgba(201,168,76,0.08); color: var(--gold); }
+    .mobile-toggle {
+      display: none;
+      background: none; border: none; cursor: pointer;
+      padding: 8px;
+      flex-direction: column; gap: 5px;
+    }
+    .mobile-toggle span {
+      display: block; width: 26px; height: 2px;
+      background: #fff; border-radius: 2px; transition: 0.3s;
+    }
+    .mobile-nav-panel {
+      display: none;
+      position: fixed;
+      top: 80px; left: 0; right: 0; bottom: 0;
+      background: #000;
+      z-index: 9998;
+      overflow-y: auto;
+      padding: 20px 30px 40px;
+    }
+    .mobile-nav-panel.open { display: block; }
+    .mobile-nav-panel > ul > li > a {
+      display: block; padding: 14px 0;
+      font-size: 15px; font-weight: 500; color: #fff;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .mobile-nav-panel > ul > li > a:hover { color: var(--gold); }
+    .mobile-nav-panel .sub-menu { padding-left: 16px; }
+    .mobile-nav-panel .sub-menu a {
+      display: block; padding: 10px 0;
+      font-size: 14px; color: #aaa;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+    .mobile-nav-panel .sub-menu a:hover { color: var(--gold); }
+    .mobile-nav-panel > ul > li.nav-cta > a { color: var(--gold); }
+    .mobile-nav-panel > ul > li.nav-donate > a {
+      display: inline-block; background: var(--gold); color: #000;
+      font-weight: 700; padding: 12px 28px; border-radius: 4px;
+      margin-top: 8px; border-bottom: none;
+    }
+    @media (max-width: 1100px) {
+      .desktop-nav { display: none; }
+      .mobile-toggle { display: flex; }
+    }
+
+    /* ============ HERO ============ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      padding: 80px 24px 60px;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg,
+          rgba(0,0,0,0.7) 0%,
+          rgba(0,0,0,0.3) 30%,
+          rgba(0,0,0,0.25) 50%,
+          rgba(0,0,0,0.5) 75%,
+          rgba(10,10,10,1) 100%
+        );
+      z-index: 1;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 40%, rgba(201,168,76,0.06) 0%, transparent 70%);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .hero-title-card {
+      width: 340px;
+      max-width: 80vw;
+      margin-bottom: 48px;
+      animation: heroFadeIn 1.2s ease-out 0.2s both;
+      filter: drop-shadow(0 20px 60px rgba(0,0,0,0.6));
+    }
+    .hero-title-card img {
+      width: 100%;
+      height: auto;
+    }
+    .hero-details {
+      animation: heroFadeIn 1s ease-out 0.6s both;
+    }
+    .hero-venue-line {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 6px;
+    }
+    .hero-venue-address {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      letter-spacing: 0.02em;
+    }
+    .hero-time {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 6px;
+    }
+    .hero-dress {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 40px;
+    }
+    .hero-ornament {
+      width: 120px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 0 auto 40px;
+      position: relative;
+    }
+    .hero-ornament::before {
+      content: '\25C6';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: var(--gold);
+      font-size: 8px;
+      background: transparent;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: heroFadeIn 1s ease-out 0.9s both;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 16px 40px;
+      border: none;
+      border-radius: 0;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .btn-gold {
+      background: var(--gold);
+      color: #0a0a0a;
+    }
+    .btn-gold:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(201,168,76,0.35);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid rgba(201,168,76,0.5);
+    }
+    .btn-outline:hover {
+      background: rgba(201,168,76,0.08);
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+    .scroll-hint {
+      position: absolute;
+      bottom: 32px; left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      animation: bounce 2.5s infinite 2s;
+    }
+    .scroll-hint svg { width: 24px; height: 24px; stroke: var(--gold); opacity: 0.4; }
+
+    /* ============ ANNOUNCEMENT ============ */
+    .announcement {
+      background: var(--section-dark);
+      padding: 120px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .announcement::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .announcement-inner { max-width: 760px; margin: 0 auto; }
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 40px;
+    }
+    .announcement-card {
+      background: linear-gradient(145deg, rgba(201,168,76,0.06), rgba(201,168,76,0.01));
+      border: 1px solid rgba(201,168,76,0.15);
+      padding: 64px 56px;
+      position: relative;
+    }
+    .announcement-card::before {
+      content: '';
+      position: absolute;
+      top: 12px; left: 12px; right: 12px; bottom: 12px;
+      border: 1px solid rgba(201,168,76,0.08);
+      pointer-events: none;
+    }
+    .announcement-text {
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 1.9;
+      color: var(--cream);
+      margin-bottom: 20px;
+    }
+    .announcement-text strong { font-weight: 700; color: var(--white); }
+    .announcement-highlight {
+      font-family: 'Gatsby Gilmour', 'Playfair Display', Georgia, serif;
+      font-size: clamp(36px, 5vw, 56px);
+      color: var(--gold);
+      margin: 28px 0;
+      line-height: 1.2;
+      letter-spacing: 0.02em;
+    }
+    .announcement-subtle {
+      font-size: 15px;
+      font-style: italic;
+      color: var(--text-muted);
+      margin-top: 20px;
+    }
+
+    /* ============ TABLE PACKAGES ============ */
+    .packages {
+      background: var(--dark-bg);
+      padding: 120px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .packages::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent);
+      z-index: 2;
+    }
+    .packages::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('tablecardBG.jpg') center center / cover no-repeat;
+      opacity: 0.2;
+      z-index: 0;
+    }
+    .packages-inner { max-width: var(--max-width); margin: 0 auto; position: relative; z-index: 1; }
+    .packages-header { text-align: center; margin-bottom: 72px; }
+    .packages-title {
+      font-family: 'Gatsby Gilmour', 'Playfair Display', Georgia, serif;
+      font-size: clamp(32px, 4vw, 52px);
+      color: var(--white);
+      margin-bottom: 16px;
+      letter-spacing: 0.02em;
+    }
+    .packages-subtitle {
+      font-size: 15px;
+      color: var(--text-muted);
+      font-weight: 300;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .pkg-card {
+      background: var(--dark-card);
+      border: 1px solid rgba(201,168,76,0.08);
+      padding: 44px 32px;
+      position: relative;
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    }
+    .pkg-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(201,168,76,0.25);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+    .pkg-card.sold-out { opacity: 0.5; }
+    .pkg-card.sold-out .pkg-name {
+      text-decoration: line-through;
+      text-decoration-color: var(--red-accent);
+    }
+    .pkg-card.featured {
+      border-color: var(--gold);
+      background: linear-gradient(165deg, var(--dark-card-alt), var(--dark-card));
+    }
+    .pkg-card.featured::before {
+      content: 'LAST REMAINING';
+      position: absolute;
+      top: -12px; left: 50%;
+      transform: translateX(-50%);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: #0a0a0a;
+      background: var(--gold);
+      padding: 5px 22px;
+      white-space: nowrap;
+    }
+    .pkg-name {
+      font-family: 'Gatsby Gilmour', 'Playfair Display', Georgia, serif;
+      font-size: 24px;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .pkg-price {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+      margin-bottom: 28px;
+      min-height: 20px;
+    }
+    .pkg-price.sold { color: var(--red-accent); font-weight: 700; }
+    .pkg-divider {
+      width: 40px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin-bottom: 28px;
+    }
+    .pkg-features { display: flex; flex-direction: column; gap: 16px; }
+    .pkg-features li {
+      font-size: 14px;
+      color: var(--text-muted);
+      padding-left: 20px;
+      position: relative;
+      line-height: 1.5;
+    }
+    .pkg-features li::before {
+      content: '\25C6';
+      position: absolute;
+      left: 0; top: 2px;
+      color: var(--gold);
+      font-size: 7px;
+    }
+    @media (max-width: 768px) {
+      .packages-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
+    }
+
+    /* ============ ABOUT THE EVENING ============ */
+    .about-evening {
+      background: var(--section-dark);
+      padding: 120px 24px;
+      position: relative;
+    }
+    .about-evening::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent);
+    }
+    .about-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+    .about-text {
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 2;
+      color: var(--text-muted);
+      margin-bottom: 48px;
+    }
+    .about-text strong { color: var(--cream); font-weight: 600; }
+    .evening-features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 64px;
+    }
+    .eve-feature {
+      text-align: center;
+      padding: 40px 24px;
+      border: 1px solid rgba(201,168,76,0.06);
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .eve-feature:hover {
+      border-color: rgba(201,168,76,0.15);
+      background: rgba(201,168,76,0.02);
+    }
+    .eve-icon {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: var(--gold);
+    }
+    .eve-feature h4 {
+      font-family: 'Gatsby Gilmour', 'Playfair Display', Georgia, serif;
+      font-size: 20px;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+    .eve-feature p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+    @media (max-width: 768px) {
+      .evening-features { grid-template-columns: 1fr; }
+    }
+
+    /* ============ CONTACT CTA ============ */
+    .contact-cta {
+      background: var(--dark-bg);
+      padding: 120px 24px;
+      text-align: center;
+      position: relative;
+    }
+    .contact-cta::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent);
+    }
+    .contact-inner { max-width: 640px; margin: 0 auto; }
+    .contact-title {
+      font-family: 'Gatsby Gilmour', 'Playfair Display', Georgia, serif;
+      font-size: clamp(28px, 4vw, 44px);
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+    .contact-text {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+    .contact-name {
+      font-weight: 600;
+      color: var(--cream);
+      font-size: 17px;
+      margin-bottom: 4px;
+    }
+    .contact-role {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      letter-spacing: 0.04em;
+    }
+    .contact-email {
+      color: var(--gold);
+      font-weight: 500;
+      font-size: 15px;
+      transition: color 0.2s;
+      display: inline-block;
+      margin-bottom: 44px;
+    }
+    .contact-email:hover { color: var(--gold-light); }
+    .contact-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    /* ============ FOOTER ============ */
+    .site-footer { background: #000; padding: 60px 30px 0; }
+    .footer-top {
+      max-width: 1400px; margin: 0 auto;
+      display: flex; flex-wrap: wrap;
+      justify-content: space-between; align-items: flex-start;
+      gap: 40px; padding-bottom: 40px;
+    }
+    .footer-brand-logo { margin-bottom: 24px; }
+    .footer-brand-logo img { height: 50px; width: auto; }
+    .footer-brand-actions { display: flex; gap: 12px; }
+    .footer-brand-actions a {
+      display: inline-block; font-size: 12px; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--gold); border: 1px solid var(--gold);
+      padding: 10px 24px; transition: background 0.2s;
+    }
+    .footer-brand-actions a:hover { background: rgba(201,168,76,0.1); }
+    .footer-nav-links {
+      display: flex; flex-wrap: wrap; gap: 12px 28px;
+      align-items: flex-start; padding-top: 8px;
+    }
+    .footer-nav-links a { font-size: 13px; color: #aaa; transition: color 0.2s; }
+    .footer-nav-links a:hover { color: var(--gold); }
+    .footer-bottom {
+      max-width: 1400px; margin: 0 auto;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 24px 0;
+      display: flex; flex-wrap: wrap;
+      justify-content: space-between; align-items: center; gap: 16px;
+    }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.35); }
+    .footer-social { display: flex; gap: 12px; align-items: center; }
+    .footer-social a {
+      display: flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px; opacity: 0.6; transition: opacity 0.2s;
+    }
+    .footer-social a:hover { opacity: 1; }
+    .footer-social img { width: 20px; height: 20px; }
+    @media (max-width: 768px) {
+      .footer-top { flex-direction: column; align-items: center; text-align: center; }
+      .footer-brand-actions { justify-content: center; }
+      .footer-nav-links { justify-content: center; }
+      .footer-bottom { flex-direction: column; align-items: center; text-align: center; }
+    }
+
+    /* ============ ANIMATIONS ============ */
+    @keyframes heroFadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+      40% { transform: translateX(-50%) translateY(-10px); }
+      60% { transform: translateX(-50%) translateY(-5px); }
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 600px) {
+      .hero { padding: 100px 16px 60px; }
+      .hero-title-card { width: 280px; margin-bottom: 36px; }
+      .hero-venue-line { font-size: 12px; }
+      .hero-venue-address { font-size: 13px; }
+      .btn { padding: 14px 28px; font-size: 11px; }
+      .announcement-card { padding: 40px 24px; }
+      .announcement-highlight { font-size: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a href="https://wickers.org.uk" class="header-logo">
+        <img src="https://wickers.org.uk/wp-content/uploads/2023/03/Wickers-Logo-white-1.png" alt="The Wickers Charity" />
+      </a>
+      <ul class="desktop-nav">
+        <li>
+          <a href="https://wickers.org.uk/about/">About</a>
+          <ul class="sub-menu">
+            <li><a href="https://wickers.org.uk/about/">About Us</a></li>
+            <li><a href="https://wickers.org.uk/impact/">Our Impact</a></li>
+            <li><a href="https://wickers.org.uk/policies-procedures/">Policies &amp; Procedures</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="https://wickers.org.uk/services/">Services</a>
+          <ul class="sub-menu">
+            <li><a href="https://wickers.org.uk/activities/">Activities</a></li>
+            <li><a href="https://wickers.org.uk/employability/">Employability</a></li>
+            <li><a href="https://wickers.org.uk/mentoring/">Mentoring</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="https://wickers.org.uk/whats-on/">What's On</a>
+          <ul class="sub-menu">
+            <li><a href="https://wickers.org.uk/whats-on-activities/">Activities</a></li>
+            <li><a href="https://wickers.org.uk/whats-on-employability/">Employability Programmes</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="https://wickers.org.uk/fundraising/">Fundraising</a>
+          <ul class="sub-menu">
+            <li><a href="https://wickers.org.uk/fundraising/boxing/">The Great Gatsby Boxing</a></li>
+            <li><a href="https://wickers.org.uk/fundraising/its-a-knock-out/">It's a Knock Out</a></li>
+          </ul>
+        </li>
+        <li><a href="https://wickers.org.uk/our-team/">Our Team</a></li>
+        <li><a href="https://wickers.org.uk/work-with-us/">Opportunities</a></li>
+        <li>
+          <a href="https://wickers.org.uk/our-funders/">Supporters</a>
+          <ul class="sub-menu">
+            <li><a href="https://wickers.org.uk/our-funders/">Funders</a></li>
+            <li><a href="https://wickers.org.uk/our-partners/">Partners</a></li>
+          </ul>
+        </li>
+        <li><a href="https://wickers.org.uk/contact/">Contact</a></li>
+        <li class="nav-cta"><a href="https://wickers.org.uk/get-involved/">Get involved!</a></li>
+        <li class="nav-donate"><a href="https://wickers.org.uk/donate/">Donate</a></li>
+      </ul>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-nav-panel" id="mobileNav">
+    <ul>
+      <li>
+        <a href="https://wickers.org.uk/about/">About</a>
+        <ul class="sub-menu">
+          <li><a href="https://wickers.org.uk/about/">About Us</a></li>
+          <li><a href="https://wickers.org.uk/impact/">Our Impact</a></li>
+          <li><a href="https://wickers.org.uk/policies-procedures/">Policies &amp; Procedures</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="https://wickers.org.uk/services/">Services</a>
+        <ul class="sub-menu">
+          <li><a href="https://wickers.org.uk/activities/">Activities</a></li>
+          <li><a href="https://wickers.org.uk/employability/">Employability</a></li>
+          <li><a href="https://wickers.org.uk/mentoring/">Mentoring</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="https://wickers.org.uk/whats-on/">What's On</a>
+        <ul class="sub-menu">
+          <li><a href="https://wickers.org.uk/whats-on-activities/">Activities</a></li>
+          <li><a href="https://wickers.org.uk/whats-on-employability/">Employability Programmes</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="https://wickers.org.uk/fundraising/">Fundraising</a>
+        <ul class="sub-menu">
+          <li><a href="https://wickers.org.uk/fundraising/boxing/">The Great Gatsby Boxing</a></li>
+          <li><a href="https://wickers.org.uk/fundraising/its-a-knock-out/">It's a Knock Out</a></li>
+        </ul>
+      </li>
+      <li><a href="https://wickers.org.uk/our-team/">Our Team</a></li>
+      <li><a href="https://wickers.org.uk/work-with-us/">Opportunities</a></li>
+      <li>
+        <a href="https://wickers.org.uk/our-funders/">Supporters</a>
+        <ul class="sub-menu">
+          <li><a href="https://wickers.org.uk/our-funders/">Funders</a></li>
+          <li><a href="https://wickers.org.uk/our-partners/">Partners</a></li>
+        </ul>
+      </li>
+      <li><a href="https://wickers.org.uk/contact/">Contact</a></li>
+      <li class="nav-cta"><a href="https://wickers.org.uk/get-involved/">Get involved!</a></li>
+      <li class="nav-donate"><a href="https://wickers.org.uk/donate/">Donate</a></li>
+    </ul>
+  </div>
+
+  <!-- ==================== HERO ==================== -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="gala_BG_hero.png" alt="" role="presentation" />
+    </div>
+    <div class="hero-content">
+      <div class="hero-title-card">
+        <img src="https://images.squarespace-cdn.com/content/66e96a892671045df50e8f20/5be9d356-a83c-49b7-a294-671cab82d907/gala+cover-detailsx2.png?content-type=image%2Fpng" alt="Royale Gala 2026 – Friday 15th May – The Wickers Charity" />
+      </div>
+      <div class="hero-details">
+        <p class="hero-venue-line">De Vere Connaught Rooms</p>
+        <p class="hero-venue-address">61–65 Great Queen St, London, WC2B 5DA</p>
+        <p class="hero-time">Doors open 6:30pm</p>
+        <p class="hero-dress">Black Tie</p>
+        <div class="hero-ornament"></div>
+        <div class="hero-ctas">
+          <a href="/cdn-cgi/l/email-protection#9dffeff2fafcf3ddeaf4fef6f8efeeb3f2effab3e8f6a2eee8fff7f8fee9a0cff2e4fcf1f8b8afaddafcf1fcb8afadafadafabb8afadb0b8afadc9fcfff1f8b8afadd8f3ece8f4efe4" class="btn btn-gold">Reserve a Table</a>
+          <a href="https://wickers.org.uk/donate/" class="btn btn-outline">Donate</a>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5"/><path d="M7 7l5 5 5-5"/></svg>
+    </div>
+  </section>
+
+  <!-- ==================== ANNOUNCEMENTS ==================== -->
+  <section class="announcement">
+    <div class="announcement-inner reveal">
+      <p class="section-label">Very Special Guests Announced</p>
+      <div class="announcement-card">
+        <p class="announcement-text">We are proud to reveal that this year's exclusive live Q&amp;A is with none other than</p>
+        <p class="announcement-highlight">Barry Hearn OBE</p>
+        <p class="announcement-text">A titan of British sport, straight-talking, visionary and wildly entertaining — this will be a conversation not to miss.</p>
+        <p class="announcement-subtle">And when the lights drop…</p>
+        <p class="announcement-text" style="margin-top:24px">The night continues with a mega live performance from the legendary icons that are</p>
+        <img src="groove-armada-gold.svg" alt="Groove Armada" style="display:block; margin:28px auto; width:clamp(260px,50vw,480px); height:auto;" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TABLE PACKAGES ==================== -->
+  <section class="packages">
+    <div class="packages-inner">
+      <div class="packages-header reveal">
+        <p class="section-label">Table Packages &amp; Pricing</p>
+        <h2 class="packages-title">Secure Your Table</h2>
+        <p class="packages-subtitle">All tables include full access to the evening's programme, entertainment, and immersive experiences.</p>
+      </div>
+      <div class="packages-grid">
+        <div class="pkg-card sold-out reveal">
+          <h3 class="pkg-name">VIP First-Line Tables</h3>
+          <p class="pkg-price sold">SOLD OUT</p>
+          <div class="pkg-divider"></div>
+          <ul class="pkg-features">
+            <li>Prime first-line positioning in the main room</li>
+            <li>Seating for 10–12 guests</li>
+            <li>Exclusive elevated wine menu</li>
+            <li>Premium dining experience</li>
+            <li>Priority placement for key moments throughout the evening</li>
+          </ul>
+        </div>
+        <div class="pkg-card featured reveal">
+          <h3 class="pkg-name">Second-Tier Tables</h3>
+          <p class="pkg-price">&pound;6,000 + VAT per table</p>
+          <div class="pkg-divider"></div>
+          <ul class="pkg-features">
+            <li>Excellent positioning within the main room</li>
+            <li>Seating for 10 guests</li>
+            <li>Curated dining and wine experience</li>
+            <li>Full access to all entertainment and experiences</li>
+          </ul>
+        </div>
+        <div class="pkg-card featured reveal">
+          <h3 class="pkg-name">Third-Tier Tables</h3>
+          <p class="pkg-price">&pound;5,000 + VAT per table</p>
+          <div class="pkg-divider"></div>
+          <ul class="pkg-features">
+            <li>Seating for 10 guests</li>
+            <li>Elegant dining experience</li>
+            <li>Full access to the evening's programme, entertainment, and casino-style activations</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ABOUT THE EVENING ==================== -->
+  <section class="about-evening">
+    <div class="about-inner">
+      <p class="section-label reveal">The Evening</p>
+      <h2 class="packages-title reveal">An Unforgettable Night</h2>
+      <p class="about-text reveal">
+        Join us for an extraordinary evening of <strong>world-class entertainment</strong>, <strong>fine dining</strong>, and <strong>immersive experiences</strong> — all in aid of supporting young people across East London. Every table purchased directly funds The Wickers Charity's work delivering mentoring, activities, and employability programmes for young people aged 8–21.
+      </p>
+      <div class="evening-features">
+        <div class="eve-feature reveal">
+          <div class="eve-icon">♣</div>
+          <h4>Casino-Style Activations</h4>
+          <p>Immersive gaming experiences that bring the thrill of the evening to life.</p>
+        </div>
+        <div class="eve-feature reveal">
+          <div class="eve-icon">♦</div>
+          <h4>Premium Dining</h4>
+          <p>An exquisite multi-course dining experience with curated wine pairings.</p>
+        </div>
+        <div class="eve-feature reveal">
+          <div class="eve-icon">♥</div>
+          <h4>Live Entertainment</h4>
+          <p>A live Q&amp;A with Barry Hearn OBE followed by a headline set from Groove Armada.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CONTACT CTA ==================== -->
+  <section class="contact-cta">
+    <div class="contact-inner reveal">
+      <p class="section-label">Get In Touch</p>
+      <h2 class="contact-title">Reserve Your Place</h2>
+      <p class="contact-text">If you have any questions, or would like to discuss sponsorship opportunities, please contact:</p>
+      <p class="contact-name">Brogan Garrit-Smith</p>
+      <p class="contact-role">Chief Fundraiser, The Wickers Charity</p>
+      <a href="/cdn-cgi/l/email-protection#4220302d25232c02352b21292730316c2d30256c3729" class="contact-email"><span class="__cf_email__" data-cfemail="ff9d8d90989e91bf88969c949a8d8cd1908d98d18a94">[email&#160;protected]</span></a>
+      <div class="contact-ctas">
+        <a href="/cdn-cgi/l/email-protection#bedcccd1d9dfd0fec9d7ddd5dbcccd90d1ccd990cbd581cdcbdcd4dbddca83ecd1c7dfd2db9b8c8ef9dfd2df9b8c8e8c8e8c889b8c8e939b8c8eeadfdcd2db9b8c8efbd0cfcbd7ccc7" class="btn btn-gold">Enquire About Tables</a>
+        <a href="/cdn-cgi/l/email-protection#1b7969747c7a755b6c7278707e69683574697c356e7024686e79717e786f264974627a777e3e292b5c7a777a3e292b292b292d3e292b363e292b486b74756874696873726b" class="btn btn-outline">Sponsorship</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-brand-logo">
+          <a href="https://wickers.org.uk">
+            <img src="https://wickers.org.uk/wp-content/uploads/2023/03/Wickers-Logo-white-1.png" alt="The Wickers Charity" />
+          </a>
+        </div>
+        <div class="footer-brand-actions">
+          <a href="https://wickers.org.uk/get-involved/">Get involved</a>
+          <a href="https://wickers.org.uk/donate/">Donate</a>
+        </div>
+      </div>
+      <nav class="footer-nav-links">
+        <a href="https://wickers.org.uk/about/">About</a>
+        <a href="https://wickers.org.uk/services/">Services</a>
+        <a href="https://wickers.org.uk/whats-on/">What's On</a>
+        <a href="https://wickers.org.uk/fundraising/">Fundraising</a>
+        <a href="https://wickers.org.uk/our-team/">Our Team</a>
+        <a href="https://wickers.org.uk/contact/">Contact</a>
+        <a href="https://wickers.org.uk/our-funders/">Supporters</a>
+        <a href="https://wickers.org.uk/impact/">Impact</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy;2024 The Wickers. All rights reserved. Registered Charity: England and Wales 1178580.</p>
+      <div class="footer-social">
+        <a href="https://twitter.com/WickersThe" aria-label="Twitter">
+          <img src="https://wickers.org.uk/wp-content/uploads/2023/04/Twitter.svg" alt="Twitter" />
+        </a>
+        <a href="https://www.facebook.com/thewickerscharity/" aria-label="Facebook">
+          <img src="https://wickers.org.uk/wp-content/uploads/2023/04/Facebook.svg" alt="Facebook" />
+        </a>
+        <a href="https://www.youtube.com/channel/UCuDc-W8HuT0jel7R0ztVOcQ" aria-label="YouTube">
+          <img src="https://wickers.org.uk/wp-content/uploads/2023/04/YouTube.svg" alt="YouTube" />
+        </a>
+        <a href="https://www.instagram.com/thewickerscharity/" aria-label="Instagram">
+          <img src="https://wickers.org.uk/wp-content/uploads/2023/04/Instagram.svg" alt="Instagram" />
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    /* Mobile nav toggle */
+    document.getElementById('mobileToggle').addEventListener('click', () => {
+      document.getElementById('mobileNav').classList.toggle('open');
+    });
+
+    /* Sticky header background on scroll */
+    const header = document.getElementById('siteHeader');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    /* Scroll-reveal animations via IntersectionObserver */
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

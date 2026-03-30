@@ -217,9 +217,9 @@
       align-items: center;
     }
     .hero-title-card {
-      width: 340px;
-      max-width: 80vw;
-      margin-bottom: 48px;
+      width: 280px;
+      max-width: 70vw;
+      margin-bottom: 36px;
       animation: heroFadeIn 1.2s ease-out 0.2s both;
       filter: drop-shadow(0 20px 60px rgba(0,0,0,0.6));
     }
@@ -667,6 +667,75 @@
       40% { transform: translateX(-50%) translateY(-10px); }
       60% { transform: translateX(-50%) translateY(-5px); }
     }
+    /* ============ SPONSOR STRIPS ============ */
+    .hero-sponsors {
+      margin-top: 40px;
+      text-align: center;
+      animation: heroFadeIn 1s ease-out 1s both;
+    }
+    .sponsor-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(240,236,228,0.4);
+      margin-bottom: 6px;
+    }
+    .sponsor-headline-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+      margin-top: 16px;
+    }
+    .sponsor-headline-logo img {
+      height: 32px;
+      width: auto;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+    .sponsor-divider {
+      width: 40px;
+      height: 1px;
+      background: rgba(201,168,76,0.25);
+      margin: 20px auto;
+    }
+    .sponsor-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
+      flex-wrap: wrap;
+    }
+    .sponsor-row img {
+      height: 28px;
+      width: auto;
+      opacity: 0.7;
+    }
+    .footer-sponsors {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 36px 0;
+      text-align: center;
+    }
+    .footer-sponsors .sponsor-headline-logo img {
+      height: 28px;
+    }
+    .footer-sponsors .sponsor-row img {
+      height: 22px;
+    }
+    .footer-sponsors .sponsor-label {
+      color: rgba(255,255,255,0.3);
+    }
+    @media (max-width: 600px) {
+      .sponsor-row { gap: 24px; }
+      .sponsor-row img { height: 22px; }
+      .sponsor-headline-logo img { height: 26px; }
+    }
+
     .reveal {
       opacity: 0;
       transform: translateY(30px);
@@ -811,6 +880,19 @@
           <a href="https://wickers.org.uk/donate/" class="btn btn-outline">Donate</a>
         </div>
       </div>
+      <div class="hero-sponsors">
+        <p class="sponsor-label">Supported by</p>
+        <p class="sponsor-headline-label">Headline Sponsor</p>
+        <div class="sponsor-headline-logo">
+          <img src="FENCHURCH_LOGO_RGB_W-O.svg" alt="Fenchurch" />
+        </div>
+        <div class="sponsor-divider"></div>
+        <div class="sponsor-row">
+          <img src="aitch_word_white.svg" alt="Aitch" />
+          <img src="HG_LOGO_turquoise.svg" alt="HG" />
+          <img src="Statom_GROUP_Y___W.svg" alt="Staton Group" />
+        </div>
+      </div>
     </div>
     <div class="scroll-hint">
       <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5"/><path d="M7 7l5 5 5-5"/></svg>
@@ -946,6 +1028,19 @@
         <a href="https://wickers.org.uk/our-funders/">Supporters</a>
         <a href="https://wickers.org.uk/impact/">Impact</a>
       </nav>
+    </div>
+    <div class="footer-sponsors">
+      <p class="sponsor-label">Supported by</p>
+      <p class="sponsor-headline-label">Headline Sponsor</p>
+      <div class="sponsor-headline-logo">
+        <img src="FENCHURCH_LOGO_RGB_W-O.svg" alt="Fenchurch" />
+      </div>
+      <div class="sponsor-divider"></div>
+      <div class="sponsor-row">
+        <img src="aitch_word_white.svg" alt="Aitch" />
+        <img src="HG_LOGO_turquoise.svg" alt="HG" />
+        <img src="Statom_GROUP_Y___W.svg" alt="Staton Group" />
+      </div>
     </div>
     <div class="footer-bottom">
       <p class="footer-copy">&copy;2024 The Wickers. All rights reserved. Registered Charity: England and Wales 1178580.</p>
